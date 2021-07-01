@@ -10,7 +10,24 @@ public class Order {
     private Date moment;
     private OrderStatus status;
 
-    List<OrderItem> items = new ArrayList<>();
+    private List<OrderItem> items = new ArrayList<>();
+
+    public Order(Date moment, OrderStatus status) {
+        this.moment = moment;
+        this.status = status;
+    }
+
+    public Date getMoment() {
+        return moment;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
 
     public void addItem(OrderItem item){
         items.add(item);
