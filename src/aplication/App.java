@@ -15,7 +15,7 @@ public class App {
     public static void main(String[] args) throws ParseException {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
         System.out.println("Enter client data: ");
         System.out.print("Name: ");
@@ -32,10 +32,9 @@ public class App {
         System.out.print("Status: ");
         String orderStatus = sc.nextLine();
         OrderStatus status = OrderStatus.valueOf(orderStatus);
-        //LocalDateTime moment = LocalDateTime.now();
-        https://www.javatpoint.com/java-get-current-dates
-        Date moment = sdf.
-        Order order = new Order(moment, status);
+        Date date = new Date();
+        String moment = sdf.format(date);
+        Order order = new Order(sdf.parse(moment), status);
 
         System.out.print("How many items to this order? ");
         int itemQuantity = sc.nextInt();
@@ -48,6 +47,8 @@ public class App {
             double productPrice = sc.nextDouble();
             System.out.print("Quantity: ");
             int productQuantity = sc.nextInt();
+            OrderItem orderItem = new OrderItem(productQuantity, productPrice);
+            order.addItem(orderItem);
         }
 
         sc.close();

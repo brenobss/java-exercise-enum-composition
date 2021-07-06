@@ -7,6 +7,8 @@ public class OrderItem {
     private Integer quantity;
     private Double price;
 
+    private Product product = new Product()
+
     public OrderItem(Integer quantity, Double price) {
         this.quantity = quantity;
         this.price = price;
