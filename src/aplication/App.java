@@ -15,7 +15,7 @@ public class App {
     public static void main(String[] args) throws ParseException {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         System.out.println("Enter client data: ");
         System.out.print("Name: ");
@@ -32,9 +32,7 @@ public class App {
         System.out.print("Status: ");
         String orderStatus = sc.nextLine();
         OrderStatus status = OrderStatus.valueOf(orderStatus);
-        Date date = new Date();
-        String moment = sdf.format(date);
-        Order order = new Order(sdf.parse(moment), status);
+        Order order = new Order(new Date(), status, cli);
 
         System.out.print("How many items to this order? ");
         int itemQuantity = sc.nextInt();
@@ -47,11 +45,12 @@ public class App {
             double productPrice = sc.nextDouble();
             System.out.print("Quantity: ");
             int productQuantity = sc.nextInt();
-            OrderItem orderItem = new OrderItem(productQuantity, productPrice);
+            Product product = new Product(productName, productPrice);
+            OrderItem orderItem = new OrderItem(productQuantity, productPrice, product);
             order.addItem(orderItem);
         }
-
+        System.out.println();
+        System.out.println(order);
         sc.close();
-
     }
 }
